@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b18"><meta name="description" content="AI Clipper Pro - editor video lokal gratis">
+<link rel="manifest" href="manifest.json"><link rel="stylesheet" href="style.css">
+<title>AI CLIPPER PRO</title>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#"><span class="brandmark">✂</span> AI CLIPPER <b>PRO</b></a><span class="local-pill">● GRATIS • PROSES DI PERANGKAT</span></header>
+<main>
+<section class="hero"><div class="eyebrow">VIDEO CREATION STUDIO</div><h1>Ubah video panjang<br><span>jadi konten viral.</span></h1><p>Potong, edit, beri subtitle, dan ekspor video langsung dari browser. Tanpa kredit dan tanpa mengunggah video ke server.</p></section>
+<section class="workspace">
+
+ <div class="panel import-panel">
+  <div class="panel-head"><div><small>SUMBER VIDEO</small><h2>Import dari link</h2></div><span class="step">URL</span></div>
+  <label class="wide-label">Jenis sumber
+   <select id="sourceType"><option value="direct">Link video langsung (MP4 / WebM)</option><option value="youtube">YouTube (pratinjau resmi)</option></select>
+  </label>
+  <label class="wide-label" style="margin-top:12px">URL video
+   <input id="sourceUrl" type="url" placeholder="https://contoh.com/video.mp4">
+  </label>
+  <div class="button-row">
+   <button class="btn secondary" id="loadUrlBtn">Muat link</button>
+   <span class="muted" id="urlStatus">Link video yang dapat diakses langsung bisa dimuat.</span>
+  </div>
+  <div id="youtubeNotice" class="url-notice" hidden>Pratinjau YouTube menggunakan pemutar resmi. YouTube tidak menyediakan pengambilan file video melalui URL biasa. Jika video adalah milikmu, unduh melalui YouTube Studio lalu upload file-nya ke editor.</div>
+  <div id="youtubePreview" class="youtube-preview" hidden></div>
+ </div>
+
+ <div class="panel upload-panel">
+  <div class="panel-head"><div><small>LANGKAH 01</small><h2>Masukkan video</h2></div><span class="step">01</span></div>
+  <label class="dropzone" id="dropzone"><input id="videoInput" type="file" accept="video/*"><span class="upload-icon">＋</span><strong>Pilih atau tarik video ke sini</strong><small>MP4, MOV, WEBM • Disarankan di bawah 500 MB</small></label>
+  <div class="file-meta" id="fileMeta">Belum ada video dipilih</div>
+ </div>
+ <div class="panel editor-panel">
+  <div class="panel-head"><div><small>LANGKAH 02</small><h2>Editor video</h2></div><span class="step">02</span></div>
+  <div class="preview-wrap"><video id="preview" controls playsinline></video><div id="previewEmpty">Pratinjau video akan muncul di sini</div></div>
+  <div class="controls-grid">
+   <label>Mulai (detik)<input id="startTime" type="number" min="0" step=".1" value="0"></label>
+   <label>Akhir (detik)<input id="endTime" type="number" min="0" step=".1" value="15"></label>
+   <label>Rasio video<select id="ratio"><option value="original">Asli</option><option value="9:16">Vertikal 9:16</option><option value="1:1">Kotak 1:1</option><option value="16:9">Landscape 16:9</option></select></label>
+   <label>Kualitas<select id="quality"><option value="medium">Standar (lebih cepat)</option><option value="high">Tinggi</option><option value="small">Ukuran kecil</option></select></label>
+  </div>
+  <label class="wide-label">Teks / subtitle overlay<input id="overlayText" type="text" maxlength="120" placeholder="Tulis teks yang ingin tampil di video"></label>
+  <div class="button-row"><button class="btn secondary" id="setEnd">Pakai posisi video sebagai akhir</button><button class="btn secondary" id="setStart">Pakai posisi video sebagai awal</button></div>
+ </div>
+ <div class="panel clip-panel">
+  <div class="panel-head"><div><small>LANGKAH 03</small><h2>Smart clip finder</h2></div><span class="step">03</span></div>
+  <p class="muted">Analisis lokal sederhana untuk menemukan bagian dengan aktivitas audio yang menonjol. Ini bukan pemahaman semantik AI; hasilnya adalah saran momen berdasarkan tingkat suara.</p>
+  <div class="button-row"><button class="btn secondary" id="analyzeBtn" disabled>✦ Cari momen menarik</button><span id="analysisStatus" class="muted">Pilih video terlebih dahulu</span></div>
+  <div id="suggestions" class="suggestions"></div>
+ </div>
+ <div class="panel export-panel">
+  <div class="panel-head"><div><small>LANGKAH 04</small><h2>Ekspor hasil</h2></div><span class="step">04</span></div>
+  <div class="export-info"><span>⚡</span><div><b>Pemrosesan di perangkat</b><small>Video tidak dikirim ke server. Jangan tutup tab saat ekspor berlangsung.</small></div></div>
+  <button class="btn primary" id="exportBtn" disabled>✂ Buat video MP4</button>
+  <div class="progress-area" id="progressArea" hidden><div class="progress-track"><div id="progressBar"></div></div><small id="progressText">Menyiapkan mesin video…</small></div>
+  <a id="downloadLink" class="download-link" hidden>⬇ Unduh video hasil</a>
+  <div id="errorBox" class="error" hidden></div>
+ </div>
+</section>
+<footer>AI CLIPPER PRO <span>•</span> Versi 1.0 • Pemrosesan lokal di browser</footer>
+</main>
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/umd/ffmpeg.js"></script>
+<script src="https://unpkg.com/@ffmpeg/util@0.12.1/dist/umd/index.js"></script>
+<script src="app.js"></script>
+</body></html>

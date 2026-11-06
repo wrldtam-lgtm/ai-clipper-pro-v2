@@ -1,0 +1,9 @@
+{
+  "name": "AI Clipper Pro",
+  "short_name": "AI Clipper",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#090b18",
+  "theme_color": "#090b18",
+  "icons": []
+}
